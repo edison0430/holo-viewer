@@ -11,20 +11,32 @@ import scheduledRes from '../scheduledRes';
 export const fetchLiveStream = () => async (dispatch) => {
   const response = await holoDev.get('/lives/current');
   // const response = res;
+  const liveStream = response.data.lives.map((live) => {
+    return {
+      ...live,
+      status: 'live',
+    };
+  });
 
   dispatch({
     type: FETCH_LIVE_STREAM,
-    payload: response.data.lives,
+    payload: liveStream,
   });
 };
 
 export const fetchScheduledStream = () => async (dispatch) => {
   const response = await holoDev.get('/lives/scheduled');
   // const response = scheduledRes;
+  const scheduledStream = response.data.lives.map((live) => {
+    return {
+      ...live,
+      status: 'scheduled',
+    };
+  });
 
   dispatch({
     type: FETCH_SCHEDULED_STREAM,
-    payload: response.data.lives,
+    payload: scheduledStream,
   });
 };
 

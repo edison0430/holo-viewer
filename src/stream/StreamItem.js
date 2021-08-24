@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import StreamChip from './StreamChip';
 
 function StreamItem({ stream }) {
   const channels = useSelector((state) => state.streamReducer.channel);
@@ -25,6 +26,7 @@ function StreamItem({ stream }) {
             src={stream.cover}
             alt={stream.title}
           />
+          {stream.status === 'live' && <StreamChip stream={stream} />}
         </div>
         <div className="flex items-center h-[80px]">
           {/* avatar */}
