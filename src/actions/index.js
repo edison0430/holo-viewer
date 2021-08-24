@@ -29,11 +29,22 @@ export const fetchScheduledStream = () => async (dispatch) => {
 };
 
 export const fetchChannel = () => async (dispatch) => {
-  let channel = JSON.parse(sessionStorage.getItem('channel'));
+  let channel = JSON.parse(sessionStorage.getItem('channel')) || [];
 
-  if (!channel) {
-    const response = await holoDev.get('channels?limit=100');
-    channel = response.data.channels;
+  if (channel.length === 0) {
+    let page = 1;
+    let hasNextPage = true;
+    while (hasNextPage) {
+      const response = await holoDev.get(`channels?limit=100&page=${page}`);
+      channel = channel.concat(response.data.channels);
+
+      if (channel.length < response.data.total) {
+        page++;
+      } else {
+        hasNextPage = false;
+      }
+    }
+
     sessionStorage.setItem('channel', JSON.stringify(channel));
   }
 
@@ -44,9 +55,9 @@ export const fetchChannel = () => async (dispatch) => {
 };
 
 export const fetchMember = () => async (dispatch) => {
-  let member = JSON.parse(sessionStorage.getItem('member'));
+  let member = JSON.parse(sessionStorage.getItem('member')) || [];
 
-  if (!member) {
+  if (member.length === 0) {
     const response = await holoDev.get('/members');
     member = response.data;
     sessionStorage.setItem('member', JSON.stringify(member));
