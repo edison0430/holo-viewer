@@ -7,6 +7,7 @@ import {
   fetchChannel,
   fetchMember,
 } from '../actions/';
+import dayjs from 'dayjs';
 
 function StreamList() {
   const dispatch = useDispatch();
@@ -26,9 +27,14 @@ function StreamList() {
     return <StreamItem key={stream.id} stream={stream} />;
   });
 
-  const renderScheduledStreamItem = scheduledStream.map((stream) => {
-    return <StreamItem key={stream.id} stream={stream} />;
-  });
+  const renderScheduledStreamItem = scheduledStream
+    .filter((stream) => {
+      // 只顯示預定將於 24 小時之內開始之直播
+      return dayjs(stream.start_at).isBefore(dayjs().add(1, 'day'));
+    })
+    .map((stream) => {
+      return <StreamItem key={stream.id} stream={stream} />;
+    });
 
   return (
     <div>
