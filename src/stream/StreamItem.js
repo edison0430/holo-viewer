@@ -1,5 +1,10 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/zh-tw';
 import { useSelector } from 'react-redux';
 import StreamChip from './StreamChip';
+dayjs.extend(relativeTime);
+dayjs.locale('zh-tw');
 
 function StreamItem({ stream }) {
   const channels = useSelector((state) => state.streamReducer.channel);
@@ -9,6 +14,17 @@ function StreamItem({ stream }) {
     (channel) => channel.id === stream.channel_id
   )?.member_id;
   const member = members.find((member) => member.id === memberId);
+
+  const renderTimeFromNow = () => {
+    const startTime = dayjs(stream.start_at).format('HH:mm');
+    const timeFromNow = dayjs(stream.start_at).fromNow();
+
+    return (
+      <p className="text-sm">
+        將於 {timeFromNow}開始 ({startTime})
+      </p>
+    );
+  };
 
   return (
     <a
@@ -39,6 +55,7 @@ function StreamItem({ stream }) {
               {stream.title}
             </p>
             <p className="pt-1">{member?.name}</p>
+            {stream.status === 'scheduled' && renderTimeFromNow()}
           </div>
         </div>
       </div>
