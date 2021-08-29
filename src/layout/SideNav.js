@@ -1,4 +1,5 @@
-import { MenuIcon, HomeIcon } from '@heroicons/react/outline';
+import { NavLink } from 'react-router-dom';
+import { MenuIcon, HomeIcon, ViewGridIcon } from '@heroicons/react/outline';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 
@@ -15,7 +16,7 @@ function SideNav({ open, toggle }) {
 
     window.addEventListener('click', handleOutsideClick);
     return () => window.removeEventListener('click', handleOutsideClick);
-  }, [open]);
+  }, [open, toggle]);
 
   return (
     <aside
@@ -31,13 +32,26 @@ function SideNav({ open, toggle }) {
         <div className="text-xl tracking-wide font-bold">Holo Viewer</div>
       </div>
       <nav>
-        <a
-          href=""
-          className="py-2 px-4 flex items-center space-x-4 hover:bg-gray-100 "
+        <NavLink
+          to="/"
+          exact
+          className="py-2 px-4 flex items-center space-x-4 hover:bg-gray-100"
+          activeClassName="bg-gray-200"
+          onClick={toggle}
         >
           <HomeIcon className="h-6 w-6" />
           <span>首頁</span>
-        </a>
+        </NavLink>
+        <NavLink
+          to="/multi-view"
+          exact
+          className="py-2 px-4 flex items-center space-x-4 hover:bg-gray-100"
+          activeClassName="bg-gray-200"
+          onClick={toggle}
+        >
+          <ViewGridIcon className="h-6 w-6" />
+          <span>多窗閱覽</span>
+        </NavLink>
       </nav>
     </aside>
   );

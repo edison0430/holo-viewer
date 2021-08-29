@@ -37,7 +37,7 @@ function StreamList() {
     });
 
   return (
-    <div>
+    <div className="p-4 min-h-screen bg-gray-100">
       <div>
         <p className="text-lg font-bold text-green-600 mb-5">直播中</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
