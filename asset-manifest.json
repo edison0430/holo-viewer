@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/holo-viewer/static/css/main.cb0fc57e.chunk.css",
-    "main.js": "/holo-viewer/static/js/main.ba07a380.chunk.js",
-    "main.js.map": "/holo-viewer/static/js/main.ba07a380.chunk.js.map",
+    "main.js": "/holo-viewer/static/js/main.9ce29f21.chunk.js",
+    "main.js.map": "/holo-viewer/static/js/main.9ce29f21.chunk.js.map",
     "runtime-main.js": "/holo-viewer/static/js/runtime-main.42eb101e.js",
     "runtime-main.js.map": "/holo-viewer/static/js/runtime-main.42eb101e.js.map",
     "static/js/2.f5a5720b.chunk.js": "/holo-viewer/static/js/2.f5a5720b.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.42eb101e.js",
     "static/js/2.f5a5720b.chunk.js",
     "static/css/main.cb0fc57e.chunk.css",
-    "static/js/main.ba07a380.chunk.js"
+    "static/js/main.9ce29f21.chunk.js"
   ]
 }
