@@ -36,12 +36,16 @@ function StreamCircleList() {
     const member = members.find((member) => member.id === memberId);
 
     return (
-      <button key={stream.id} onClick={() => toggleStream(stream)}>
+      <button
+        className={`rounded-full  ${
+          multiViewList.some((item) => item.id === stream.id) &&
+          'ring-4 ring-red-500'
+        }`}
+        key={stream.id}
+        onClick={() => toggleStream(stream)}
+      >
         <img
-          className={`w-12 h-12 rounded-full ${
-            multiViewList.some((item) => item.id === stream.id) &&
-            'ring-4 ring-red-500'
-          }`}
+          className="w-12 h-12 rounded-full"
           src={member?.avatar}
           alt="avatar"
         />
