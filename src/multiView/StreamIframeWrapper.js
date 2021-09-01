@@ -4,7 +4,7 @@ function StreamIframeWrapper({ stream }) {
 
   return (
     <div className="wrapper flex h-full">
-      <div className="w-10/12">
+      <div className="w-10/12 flex-1">
         <iframe
           title="This is a unique title"
           src={videoIframeSrc}
@@ -14,7 +14,7 @@ function StreamIframeWrapper({ stream }) {
           allow="fullscreen;"
         />
       </div>
-      <div className="flex-auto">
+      <div className="w-2/12 flex-none">
         <iframe
           title="chatRoom"
           src={chatRoomIframeSrc}

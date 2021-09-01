@@ -7,7 +7,7 @@ import {
 import { MenuIcon } from '@heroicons/react/outline';
 import { useState } from 'react';
 import SideNav from './SideNav';
-import StreamCircleList from '../stream/StreamCircleList';
+import MultiViewHeader from './MultiViewHeader';
 
 function Navigation() {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ function Navigation() {
   const renderHeader = () => {
     switch (location.pathname) {
       case '/multi-view':
-        return <StreamCircleList />;
+        return <MultiViewHeader />;
       default:
         return (
           <div className="text-xl tracking-wide font-bold">Holo Viewer</div>
