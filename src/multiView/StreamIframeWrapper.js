@@ -55,10 +55,10 @@ function StreamIframeWrapper({ stream }) {
   const chatRoomIframeSrc = `https://gaming.youtube.com/live_chat?v=${stream.room}&embed_domain=${window.location.hostname}`;
 
   return (
-    <div className="wrapper flex h-full">
-      <div className="w-10/12 flex-1" id={`player-${stream.id}`}></div>
+    <div className="flex flex-col lg:flex-row h-full">
+      <div className="flex-1 h-full lg:h-full" id={`player-${stream.id}`}></div>
       {isChatShown && (
-        <div className="w-2/12 flex-none">
+        <div className="w-full lg:w-[400px] h-[50vh] lg:h-full">
           <iframe
             title="chatRoom"
             src={chatRoomIframeSrc}
