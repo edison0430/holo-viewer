@@ -14,7 +14,7 @@ function MultiViewHeader() {
     <div className="w-full px-4">
       <div className="flex justify-between items-center">
         <StreamCircleList />
-        <div>
+        <div className="flex items-center">
           <button className="w-10 h-10">
             <AdjustmentsIcon
               className="text-yellow-300 hover:text-yellow-400 rounded-full"

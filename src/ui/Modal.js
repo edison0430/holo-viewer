@@ -13,9 +13,9 @@ const Modal = ({ isOpen, toggle, children, title }) => {
         toggle(false);
       }
     };
-    window.addEventListener('click', handleOutsideClick);
+    window.addEventListener('click', handleOutsideClick, true);
 
-    return () => window.removeEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick, true);
   }, [isOpen, ref, toggle]);
 
   const renderHeader = () => {

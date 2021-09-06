@@ -14,8 +14,9 @@ function SideNav({ open, toggle }) {
       }
     };
 
-    window.addEventListener('click', handleOutsideClick);
-    return () => window.removeEventListener('click', handleOutsideClick);
+    window.addEventListener('click', handleOutsideClick, true);
+
+    return () => window.removeEventListener('click', handleOutsideClick, true);
   }, [open, toggle]);
 
   return (
