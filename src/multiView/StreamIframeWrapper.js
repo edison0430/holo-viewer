@@ -18,6 +18,9 @@ function StreamIframeWrapper({ stream }) {
       width: '100%',
       height: '100%',
       videoId: room,
+      playerVars: {
+        playsinline: 1,
+      },
     });
     setPlayer(player);
 
@@ -58,7 +61,7 @@ function StreamIframeWrapper({ stream }) {
     <div className="flex flex-col lg:flex-row h-full">
       <div className="flex-1 h-full lg:h-full" id={`player-${stream.id}`}></div>
       {isChatShown && (
-        <div className="w-full lg:w-[400px] h-[50vh] lg:h-full">
+        <div className="w-full lg:w-[400px] h-[70%] lg:h-full">
           <iframe
             title="chatRoom"
             src={chatRoomIframeSrc}

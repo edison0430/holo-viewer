@@ -27,7 +27,9 @@ function MultiViewIndex() {
 
   return (
     <div
-      className={`h-[calc(100vh-56px)] grid grid-flow-row ${gridStyle[multiViewLength]} `}
+      className={`h-[calc(100vh-56px)] grid grid-flow-row ${
+        multiViewLength && gridStyle[multiViewLength]
+      }`}
     >
       {renderIframeWrapper()}
     </div>
