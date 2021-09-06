@@ -5,13 +5,17 @@ import {
   TrashIcon,
   VolumeUpIcon,
   VolumeOffIcon,
+  ChatAlt2Icon as ShowChatIcon,
 } from '@heroicons/react/outline';
+import { ChatAlt2Icon as HideChatIcon } from '@heroicons/react/solid';
 import {
   playVideo,
   pauseVideo,
   mute,
   unMute,
   removeStreamFromMultiView,
+  showChat,
+  hideChat,
 } from '../actions';
 import Modal from '../ui/Modal';
 
@@ -23,7 +27,7 @@ function ControlModal({ isOpen, toggle }) {
   const members = useSelector((state) => state.streamReducer.member);
 
   const renderControlList = multiViewList.map(
-    ({ id, channel_id, title, isPlaying, isMuted }) => {
+    ({ id, channel_id, title, isPlaying, isMuted, isChatShown }) => {
       const memberId = channels.find(
         (channel) => channel.id === channel_id
       )?.member_id;
@@ -60,6 +64,14 @@ function ControlModal({ isOpen, toggle }) {
                 onClick={() => dispatch(removeStreamFromMultiView(id))}
               >
                 <TrashIcon />
+              </button>
+              <button
+                className="w-8 h-8 text-gray-500 hover:text-gray-600"
+                onClick={() => {
+                  isChatShown ? dispatch(hideChat(id)) : dispatch(showChat(id));
+                }}
+              >
+                {isChatShown ? <HideChatIcon /> : <ShowChatIcon />}
               </button>
             </div>
           </div>

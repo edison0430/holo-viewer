@@ -10,7 +10,7 @@ const stateMapping = {
 
 function StreamIframeWrapper({ stream }) {
   const dispatch = useDispatch();
-  const { id, room, isPlaying, isMuted } = stream;
+  const { id, room, isPlaying, isMuted, isChatShown } = stream;
   const [player, setPlayer] = useState(null);
 
   useEffect(() => {
@@ -57,15 +57,17 @@ function StreamIframeWrapper({ stream }) {
   return (
     <div className="wrapper flex h-full">
       <div className="w-10/12 flex-1" id={`player-${stream.id}`}></div>
-      <div className="w-2/12 flex-none">
-        <iframe
-          title="chatRoom"
-          src={chatRoomIframeSrc}
-          width="100%"
-          height="100%"
-          frameBorder="0"
-        />
-      </div>
+      {isChatShown && (
+        <div className="w-2/12 flex-none">
+          <iframe
+            title="chatRoom"
+            src={chatRoomIframeSrc}
+            width="100%"
+            height="100%"
+            frameBorder="0"
+          />
+        </div>
+      )}
     </div>
   );
 }

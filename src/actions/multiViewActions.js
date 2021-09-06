@@ -5,6 +5,8 @@ import {
   CHANGE_STATUS_TO_PAUSE,
   CHANGE_STATUS_TO_MUTE,
   CHANGE_STATUS_TO_UNMUTE,
+  SHOW_CHAT,
+  HIDE_CHAT,
 } from './types';
 
 export const addStreamToMultiView = (stream) => {
@@ -45,6 +47,20 @@ export const mute = (id) => {
 export const unMute = (id) => {
   return {
     type: CHANGE_STATUS_TO_UNMUTE,
+    payload: id,
+  };
+};
+
+export const showChat = (id) => {
+  return {
+    type: SHOW_CHAT,
+    payload: id,
+  };
+};
+
+export const hideChat = (id) => {
+  return {
+    type: HIDE_CHAT,
     payload: id,
   };
 };

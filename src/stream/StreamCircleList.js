@@ -26,9 +26,7 @@ function StreamCircleList() {
   const toggleStream = (stream) => {
     multiViewList.some((item) => item.id === stream.id)
       ? dispatch(removeStreamFromMultiView(stream.id))
-      : dispatch(
-          addStreamToMultiView({ ...stream, isPlaying: false, isMuted: false })
-        );
+      : dispatch(addStreamToMultiView(stream));
   };
 
   const renderLiveStreamCircle = liveStream.map((stream) => {
