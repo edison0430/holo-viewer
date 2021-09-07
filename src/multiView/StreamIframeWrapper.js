@@ -58,19 +58,29 @@ function StreamIframeWrapper({ stream }) {
   const chatRoomIframeSrc = `https://gaming.youtube.com/live_chat?v=${stream.room}&embed_domain=${window.location.hostname}`;
 
   return (
-    <div className="flex flex-col lg:flex-row h-full">
-      <div className="flex-1 h-full lg:h-full" id={`player-${stream.id}`}></div>
-      {isChatShown && (
-        <div className="w-full lg:w-[400px] h-[70%] lg:h-full">
-          <iframe
-            title="chatRoom"
-            src={chatRoomIframeSrc}
-            width="100%"
-            height="100%"
-            frameBorder="0"
-          />
-        </div>
-      )}
+    <div className="flex flex-col lg:flex-row">
+      {/* video */}
+      <div className="relative pt-[56.25%] lg:pt-0 lg:flex-1">
+        <div
+          className="absolute top-0 left-0 w-full h-full"
+          id={`player-${stream.id}`}
+        ></div>
+      </div>
+
+      {/* chat */}
+      <div
+        className={`w-full lg:w-[300px] h-[400px] lg:h-full ${
+          !isChatShown && 'hidden'
+        }`}
+      >
+        <iframe
+          title="chatRoom"
+          src={chatRoomIframeSrc}
+          width="100%"
+          height="100%"
+          frameBorder="0"
+        />
+      </div>
     </div>
   );
 }
