@@ -23,7 +23,9 @@ function Navigation() {
         return <MultiViewHeader />;
       default:
         return (
-          <div className="text-xl tracking-wide font-bold">Holo Viewer</div>
+          <div className="text-xl tracking-wide font-bold px-4">
+            Holo Viewer
+          </div>
         );
     }
   };
@@ -35,7 +37,7 @@ function Navigation() {
           <Route></Route>
         </Switch>
       </Router>
-      <header className="h-14 w-full flex items-center bg-gray-400/90 sticky top-0 z-10 backdrop-blur-sm pl-4 space-x-4">
+      <header className="h-14 w-full flex items-center bg-gray-400/90 sticky top-0 z-10 backdrop-blur-sm pl-4">
         <button onClick={toggle} className="w-6 h-6">
           <MenuIcon />
         </button>
