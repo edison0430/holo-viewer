@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import StreamCircleList from '../stream/StreamCircleList';
+import StreamList from '../multiView/StreamList';
 import ControlModal from '../multiView/ControlModal';
 import { AdjustmentsIcon } from '@heroicons/react/outline';
 import Tooltip from '../ui/Tooltip';
@@ -14,7 +14,7 @@ function MultiViewHeader() {
   return (
     <div className="w-full px-4">
       <div className="flex justify-between items-center">
-        <StreamCircleList />
+        <StreamList />
         <div className="flex items-center">
           <Tooltip title="開啟控制面版" position="right">
             <button className="w-10 h-10">

@@ -1,19 +1,13 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-tw';
-import { useSelector } from 'react-redux';
 import StreamChip from './StreamChip';
+import useMemberMapping from '../hooks/useMemberMapping';
 dayjs.extend(relativeTime);
 dayjs.locale('zh-tw');
 
 function StreamItem({ stream }) {
-  const channels = useSelector((state) => state.streamReducer.channel);
-  const members = useSelector((state) => state.streamReducer.member);
-
-  const memberId = channels.find(
-    (channel) => channel.id === stream.channel_id
-  )?.member_id;
-  const member = members.find((member) => member.id === memberId);
+  const member = useMemberMapping(stream.channel_id);
 
   const renderTimeFromNow = () => {
     const startTime = dayjs(stream.start_at).format('HH:mm');
