@@ -23,7 +23,11 @@ function StreamList() {
     return <StreamItem stream={stream} key={stream.id} />;
   });
 
-  return <div className="flex space-x-4">{renderLiveStream}</div>;
+  return (
+    <div className="flex flex-shrink-0 space-x-4  no-scrollbar">
+      {renderLiveStream}
+    </div>
+  );
 }
 
 export default StreamList;

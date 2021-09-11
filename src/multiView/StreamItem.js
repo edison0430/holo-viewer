@@ -15,21 +15,21 @@ function StreamItem({ stream }) {
   };
 
   return (
-    <Tooltip title={`${member?.name} - ${stream.title}`} position="left">
-      <button
-        className={`rounded-full  ${
-          multiViewList.some((item) => item.id === stream.id) &&
-          'ring-4 ring-red-500'
-        }`}
-        onClick={() => toggleStream(stream)}
-      >
-        <img
-          className="w-12 h-12 rounded-full"
-          src={member?.avatar}
-          alt="avatar"
-        />
-      </button>
-    </Tooltip>
+    // <Tooltip title={`${member?.name} - ${stream.title}`} position="left">
+    <button
+      className={`rounded-full  ${
+        multiViewList.some((item) => item.id === stream.id) &&
+        'ring-4 ring-red-500'
+      }`}
+      onClick={() => toggleStream(stream)}
+    >
+      <img
+        className="w-12 h-12 rounded-full"
+        src={member?.avatar}
+        alt="avatar"
+      />
+    </button>
+    // </Tooltip>
   );
 }
 
