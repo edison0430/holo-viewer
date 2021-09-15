@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-const Modal = ({ isOpen, toggle, children, title }) => {
+const Modal = ({ isOpen, toggle, children, title, onOk }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -21,6 +21,22 @@ const Modal = ({ isOpen, toggle, children, title }) => {
     return <div className="text-2xl">{title}</div>;
   };
 
+  const renderFooter = () => {
+    if (onOk) {
+      return (
+        <button
+          className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-sm"
+          onClick={() => {
+            onOk();
+            toggle(false);
+          }}
+        >
+          確定
+        </button>
+      );
+    }
+  };
+
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
@@ -32,8 +48,12 @@ const Modal = ({ isOpen, toggle, children, title }) => {
           ref={ref}
         >
           <div className="relative flex flex-col bg-white pointer-events-auto px-7 py-4 space-y-4 rounded">
+            {/* header */}
             {title && renderHeader()}
+            {/* content */}
             <div>{children}</div>
+            {/* footer */}
+            <div className="self-end">{renderFooter()}</div>
           </div>
         </div>
       </div>

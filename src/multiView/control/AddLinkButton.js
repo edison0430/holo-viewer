@@ -1,9 +1,9 @@
-import { AdjustmentsIcon } from '@heroicons/react/outline';
 import { useState, useRef } from 'react';
-import ControlModal from '../ControlModal';
+import { ViewGridAddIcon } from '@heroicons/react/outline';
 import Tooltip from '../../ui/Tooltip';
+import UrlModal from '../UrlModal';
 
-const MediaButton = () => {
+const AddLinkButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTooltipShown, setIsTooltipShown] = useState(false);
   const btnRef = useRef();
@@ -15,7 +15,7 @@ const MediaButton = () => {
   return (
     <>
       <button
-        className="w-10 h-10"
+        className="h-10 w-10 text-green-300 hover:text-green-400"
         onClick={() => setIsOpen((prevStatus) => !prevStatus)}
         onMouseEnter={() => {
           setIsTooltipShown(true);
@@ -25,12 +25,12 @@ const MediaButton = () => {
         }}
         ref={btnRef}
       >
-        <AdjustmentsIcon className="text-yellow-300 hover:text-yellow-400 rounded-full" />
+        <ViewGridAddIcon />
       </button>
-      {isTooltipShown && <Tooltip title="開啟控制面版" parentNode={btnRef} />}
-      <ControlModal isOpen={isOpen} toggle={toggle} />
+      {isTooltipShown && <Tooltip title="增加影片" parentNode={btnRef} />}
+      <UrlModal isOpen={isOpen} toggle={toggle} />
     </>
   );
 };
 
-export default MediaButton;
+export default AddLinkButton;

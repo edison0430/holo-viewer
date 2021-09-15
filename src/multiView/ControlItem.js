@@ -6,6 +6,7 @@ import {
   VolumeUpIcon,
   VolumeOffIcon,
   ChatAlt2Icon as ShowChatIcon,
+  UserCircleIcon,
 } from '@heroicons/react/outline';
 import { ChatAlt2Icon as HideChatIcon } from '@heroicons/react/solid';
 import {
@@ -30,13 +31,23 @@ function ControlItem({
   const dispatch = useDispatch();
   const member = useMemberMapping(channelId);
 
+  const renderAvatar = () => {
+    if (member?.avatar) {
+      return (
+        <img
+          className="self-center w-12 h-12 rounded-full mr-3"
+          src={member?.avatar}
+          alt="avatar"
+        />
+      );
+    } else {
+      return <UserCircleIcon className="w-12 h-12 mr-3" />;
+    }
+  };
+
   return (
     <div className="flex mb-4">
-      <img
-        className="self-center w-12 h-12 rounded-full mr-3"
-        src={member?.avatar}
-        alt="avatar"
-      />
+      {renderAvatar()}
       <div className="flex-1 min-w-0 space-y-2">
         <p className="truncate">{title}</p>
         <div className="flex justify-center items-center space-x-4">

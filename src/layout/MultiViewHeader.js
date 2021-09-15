@@ -1,5 +1,6 @@
 import StreamList from '../multiView/StreamList';
 import MediaButton from '../multiView/control/MediaButton';
+import AddLinkButton from '../multiView/control/AddLinkButton';
 
 function MultiViewHeader() {
   return (
@@ -13,7 +14,8 @@ function MultiViewHeader() {
 
       {/* control list */}
       <div className="flex-1 flex justify-end">
-        <div className="flex items-center">
+        <div className="flex items-center space-x-2">
+          <AddLinkButton />
           <MediaButton />
         </div>
       </div>
