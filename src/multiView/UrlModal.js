@@ -15,23 +15,25 @@ function UrlModal({ isOpen, toggle }) {
     if (!isOpen) setUrl('');
   }, [isOpen]);
 
-  const showNotification = () => {
-    setIsNotificationShwon(true);
-  };
-
   const handleOk = () => {
     const regexp = /https:\/\/www\.youtube\.com\/watch\?v=(\w+)/;
     const matched = regexp.exec(url);
 
     if (!matched) {
       setNotificaton({ title: '操作失敗', content: 'URL 格式不正確' });
-      showNotification(true);
+      setIsNotificationShwon(true);
       return;
     }
 
     if (multiViewList.some((item) => item.id === matched[1])) {
       setNotificaton({ title: '操作失敗', content: '此 URL 已在播放列表中' });
-      showNotification(true);
+      setIsNotificationShwon(true);
+      return;
+    }
+
+    if (multiViewList.length >= 9) {
+      setNotificaton({ title: '操作失敗', content: '已達列表上限' });
+      setIsNotificationShwon(true);
       return;
     }
 

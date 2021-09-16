@@ -1,20 +1,30 @@
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Tooltip from '../ui/Tooltip';
+import Notification from '../ui/Notification';
 import useMemberMapping from '../hooks/useMemberMapping';
 import { addStreamToMultiView, removeStreamFromMultiView } from '../actions/';
 
 function StreamItem({ stream }) {
   const [isTooltipShown, setIsTooltipShown] = useState(false);
+  const [isNotificationShown, setIsNotificationShwon] = useState(false);
+  const [notification, setNotificaton] = useState({ title: '', content: '' });
   const btnRef = useRef();
   const dispatch = useDispatch();
   const multiViewList = useSelector((state) => state.multiViewReducer);
   const member = useMemberMapping(stream.channel_id);
 
   const toggleStream = (stream) => {
-    multiViewList.some((item) => item.id === stream.id)
-      ? dispatch(removeStreamFromMultiView(stream.id))
-      : dispatch(addStreamToMultiView(stream));
+    if (multiViewList.some((item) => item.id === stream.id)) {
+      dispatch(removeStreamFromMultiView(stream.id));
+    } else {
+      if (multiViewList.length >= 9) {
+        setNotificaton({ title: '操作失敗', content: '已達列表上限' });
+        setIsNotificationShwon(true);
+        return;
+      }
+      dispatch(addStreamToMultiView(stream));
+    }
   };
 
   return (
@@ -43,6 +53,13 @@ function StreamItem({ stream }) {
         <Tooltip
           title={`${member?.name} - ${stream.title}`}
           parentNode={btnRef}
+        />
+      )}
+      {isNotificationShown && (
+        <Notification
+          title={notification.title}
+          content={notification.content}
+          onClose={() => setIsNotificationShwon(false)}
         />
       )}
     </>
