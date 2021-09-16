@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import YoutubePlayer from 'youtube-player';
 import { playVideo, pauseVideo } from '../actions';
+import Spin from '../ui/Spin';
 
 const stateMapping = {
   playing: 1,
@@ -12,6 +13,7 @@ function StreamIframeWrapper({ stream }) {
   const dispatch = useDispatch();
   const { id, room, isPlaying, isMuted, isChatShown } = stream;
   const [player, setPlayer] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     let player = YoutubePlayer(`player-${id}`, {
@@ -31,6 +33,8 @@ function StreamIframeWrapper({ stream }) {
         dispatch(pauseVideo(id));
       }
     });
+
+    player.on('ready', () => setIsReady(true));
 
     return () => player.off(listener);
   }, [id, room, dispatch]);
@@ -57,10 +61,20 @@ function StreamIframeWrapper({ stream }) {
 
   const chatRoomIframeSrc = `https://gaming.youtube.com/live_chat?v=${stream.room}&embed_domain=${window.location.hostname}`;
 
+  const renderLoading = () => {
+    return (
+      <div className="absolute top-0 left-0 w-full h-full bg-black text-white flex justify-center items-center">
+        <Spin />
+        Loading...
+      </div>
+    );
+  };
+
   return (
-    <div className="flex flex-col lg:flex-row">
+    <div className="flex flex-col lg:flex-row bg-black">
       {/* video */}
       <div className="relative pt-[56.25%] lg:pt-0 lg:flex-1">
+        {!isReady && renderLoading()}
         <div
           className="absolute top-0 left-0 w-full h-full"
           id={`player-${stream.id}`}
