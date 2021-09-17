@@ -19,13 +19,14 @@ function StreamList() {
     dispatch(fetchMember());
   }, [dispatch]);
 
-  const renderLiveStream = liveStream.map((stream) => {
-    return <StreamItem stream={stream} key={stream.id} />;
-  });
+  const renderLiveStream = () =>
+    liveStream.items.map((stream) => {
+      return <StreamItem stream={stream} key={stream.id} />;
+    });
 
   return (
     <div className="flex flex-shrink-0 space-x-4  no-scrollbar">
-      {renderLiveStream}
+      {renderLiveStream()}
     </div>
   );
 }

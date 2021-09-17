@@ -1,6 +1,8 @@
 import {
-  FETCH_LIVE_STREAM,
-  FETCH_SCHEDULED_STREAM,
+  REQUEST_LIVE_STREAM,
+  RECEIVE_LIVE_STREAM,
+  REQUEST_SCHEDULED_STREAM,
+  RECEIVE_SCHEDULED_STREAM,
   FETCH_CHANNEL,
   FETCH_MEMBER,
 } from './types';
@@ -9,6 +11,10 @@ import res from '../response';
 import scheduledRes from '../scheduledRes';
 
 export const fetchLiveStream = () => async (dispatch) => {
+  dispatch({
+    type: REQUEST_LIVE_STREAM,
+  });
+
   const response = await holoDev.get('/lives/current');
   // const response = res;
   const liveStream = response.data.lives.map((live) => {
@@ -19,12 +25,16 @@ export const fetchLiveStream = () => async (dispatch) => {
   });
 
   dispatch({
-    type: FETCH_LIVE_STREAM,
+    type: RECEIVE_LIVE_STREAM,
     payload: liveStream,
   });
 };
 
 export const fetchScheduledStream = () => async (dispatch) => {
+  dispatch({
+    type: REQUEST_SCHEDULED_STREAM,
+  });
+
   const response = await holoDev.get('/lives/scheduled');
   // const response = scheduledRes;
   const scheduledStream = response.data.lives.map((live) => {
@@ -35,7 +45,7 @@ export const fetchScheduledStream = () => async (dispatch) => {
   });
 
   dispatch({
-    type: FETCH_SCHEDULED_STREAM,
+    type: RECEIVE_SCHEDULED_STREAM,
     payload: scheduledStream,
   });
 };
