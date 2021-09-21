@@ -52,7 +52,7 @@ function ControlItem({
         <p className="truncate">{title}</p>
         <div className="flex justify-center items-center space-x-4">
           <button
-            className="w-8 h-8 text-gray-500 hover:text-gray-600"
+            className="w-8 h-8 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200"
             onClick={() =>
               isPlaying ? dispatch(pauseVideo(id)) : dispatch(playVideo(id))
             }
@@ -60,7 +60,7 @@ function ControlItem({
             {isPlaying ? <PauseIcon /> : <PlayIcon />}
           </button>
           <button
-            className="w-8 h-8 text-gray-500 hover:text-gray-600"
+            className="w-8 h-8 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200"
             onClick={() =>
               isMuted ? dispatch(unMute(id)) : dispatch(mute(id))
             }
@@ -68,18 +68,18 @@ function ControlItem({
             {isMuted ? <VolumeOffIcon /> : <VolumeUpIcon />}
           </button>
           <button
-            className="w-8 h-8 text-gray-500 hover:text-gray-600"
-            onClick={() => dispatch(removeStreamFromMultiView(id))}
-          >
-            <TrashIcon />
-          </button>
-          <button
-            className="w-8 h-8 text-gray-500 hover:text-gray-600"
+            className="w-8 h-8 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200"
             onClick={() => {
               isChatShown ? dispatch(hideChat(id)) : dispatch(showChat(id));
             }}
           >
             {isChatShown ? <HideChatIcon /> : <ShowChatIcon />}
+          </button>
+          <button
+            className="w-8 h-8 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200"
+            onClick={() => dispatch(removeStreamFromMultiView(id))}
+          >
+            <TrashIcon />
           </button>
         </div>
       </div>

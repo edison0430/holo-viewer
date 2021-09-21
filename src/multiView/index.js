@@ -27,7 +27,7 @@ function MultiViewIndex() {
 
   return (
     <div
-      className={`lg:h-[calc(100vh-56px)] lg:grid lg:grid-flow-row ${
+      className={`lg:h-[calc(100vh-56px)] lg:grid lg:grid-flow-row dark:bg-gray-800 ${
         multiViewLength && gridStyle[multiViewLength]
       }`}
     >

@@ -33,7 +33,7 @@ const Tooltip = ({ title, parentNode }) => {
   return ReactDOM.createPortal(
     <>
       <div
-        className={`absolute -top-full -left-full bg-gray-800 text-white text-sm px-3 py-2 rounded-md translate-y-4 ${placement} w-1/2 max-w-max ${
+        className={`absolute -top-full -left-full bg-gray-700 text-white text-sm px-3 py-2 rounded-md translate-y-4 ${placement} w-1/2 max-w-max ${
           isMobile && 'opacity-0'
         }`}
         style={{ ...coords }}

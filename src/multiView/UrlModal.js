@@ -56,7 +56,7 @@ function UrlModal({ isOpen, toggle }) {
         <input
           type="text"
           placeholder="e.g. https://www.youtube.com/watch?v=5qap5aO4i9A"
-          className="w-full outline-none border-2 px-2 py-1"
+          className="w-full outline-none border-2 dark:border-gray-500 px-2 py-1 dark:bg-gray-700 dark:text-gray-100"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />

@@ -28,7 +28,7 @@ function StreamItem({ stream }) {
     >
       <div
         key={stream.id}
-        className="w-full shadow bg-white rounded-lg overflow-hidden"
+        className="w-full shadow bg-white dark:bg-gray-700 dark:text-gray-100 rounded-lg overflow-hidden"
       >
         <div className="relative pt-[56.25%]">
           <img

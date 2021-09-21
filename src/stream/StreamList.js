@@ -62,15 +62,19 @@ function StreamList() {
   };
 
   return (
-    <div className="p-4 min-h-screen bg-gray-100">
+    <div className="p-4 min-h-screen bg-gray-100 dark:bg-gray-800">
       <div>
-        <p className="text-lg font-bold text-green-600 mb-5">直播中</p>
+        <p className="text-lg font-bold text-green-600 dark:text-green-300 mb-5">
+          直播中
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
           {renderLiveStreamItem()}
         </div>
       </div>
       <div className="mt-6">
-        <p className="text-lg font-bold text-green-600 mb-5">預定直播</p>
+        <p className="text-lg font-bold text-green-600 dark:text-green-300 mb-5">
+          預定直播
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
           {renderScheduledStreamItem()}
         </div>

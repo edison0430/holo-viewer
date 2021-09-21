@@ -47,7 +47,7 @@ const Modal = ({ isOpen, toggle, children, title, onOk }) => {
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10/12 md:w-6/12 lg:w-4/12"
           ref={ref}
         >
-          <div className="relative flex flex-col bg-white pointer-events-auto px-7 py-4 space-y-4 rounded">
+          <div className="relative flex flex-col bg-white dark:bg-gray-800 dark:text-gray-100 pointer-events-auto px-7 py-4 space-y-4 rounded">
             {/* header */}
             {title && renderHeader()}
             {/* content */}
