@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/holo-viewer/static/css/main.cf35cbe7.chunk.css",
-    "main.js": "/holo-viewer/static/js/main.19b7e91a.chunk.js",
-    "main.js.map": "/holo-viewer/static/js/main.19b7e91a.chunk.js.map",
+    "main.css": "/holo-viewer/static/css/main.1bb8f0d0.chunk.css",
+    "main.js": "/holo-viewer/static/js/main.a8cce3ec.chunk.js",
+    "main.js.map": "/holo-viewer/static/js/main.a8cce3ec.chunk.js.map",
     "runtime-main.js": "/holo-viewer/static/js/runtime-main.a6e82316.js",
     "runtime-main.js.map": "/holo-viewer/static/js/runtime-main.a6e82316.js.map",
     "static/js/2.309720eb.chunk.js": "/holo-viewer/static/js/2.309720eb.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.f0405fd0.chunk.js": "/holo-viewer/static/js/3.f0405fd0.chunk.js",
     "static/js/3.f0405fd0.chunk.js.map": "/holo-viewer/static/js/3.f0405fd0.chunk.js.map",
     "index.html": "/holo-viewer/index.html",
-    "static/css/main.cf35cbe7.chunk.css.map": "/holo-viewer/static/css/main.cf35cbe7.chunk.css.map",
+    "static/css/main.1bb8f0d0.chunk.css.map": "/holo-viewer/static/css/main.1bb8f0d0.chunk.css.map",
     "static/js/2.309720eb.chunk.js.LICENSE.txt": "/holo-viewer/static/js/2.309720eb.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a6e82316.js",
     "static/js/2.309720eb.chunk.js",
-    "static/css/main.cf35cbe7.chunk.css",
-    "static/js/main.19b7e91a.chunk.js"
+    "static/css/main.1bb8f0d0.chunk.css",
+    "static/js/main.a8cce3ec.chunk.js"
   ]
 }
