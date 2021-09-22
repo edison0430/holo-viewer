@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Holo Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 介紹
 
-## Available Scripts
+Holo Viewer 是一個讓使用者方便觀賞 Hololive 的網站，藉由`多窗閱覽`功能，更可以在同一個頁面同時觀看多個 Hololive 影片。
 
-In the project directory, you can run:
+## 功能說明
 
-### `npm start`
+### 首頁
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. 首頁中包含`直播中`及`預定直播`列表，點擊項目後，會自動開啟 Youtube 分頁。
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Header 右方有 Dark Mode 的切換按紐。
 
-### `npm test`
+### 多窗閱覽
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Header 左方會列出目前直播中的頻道，點擊頭像後即可將影片加入下方閱覽區。
+   開啟影片後，頭像會以紅圈包住，表示該影片正在觀看中。再次點擊頭像可關閉此影片。
 
-### `npm run build`
+2. 若想觀看未在清單中的影片，也可點擊 Header 右方中的`增加影片`，輸入 Youtube 影片的 URL 。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+例：https://www.youtube.com/watch?v=5qap5aO4i9A。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![add video button](/public/img/intro-addVideo-btn.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![add video modal](/public/img/intro-addVideo-modal.png)
 
-### `npm run eject`
+3. Header 右方有`控制面板`的開啟按紐，開啟後可針對目前正在閱覽區的影片執行暫停、禁音、開關聊天室、移除影片等功能。
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![control button](/public/img/intro-control-btn.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![control modal](/public/img/intro-control-modal.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Thanks
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+特別感謝 YunzheZJU 的 [Non-stop-story](https://github.com/YunzheZJU/non-stop-story) 開源項目所提供的 API
 
-## Learn More
+## Develop
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm run start
+```
