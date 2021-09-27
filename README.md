@@ -19,7 +19,7 @@ Holo Viewer 是一個讓使用者方便觀賞 Hololive 的網站，藉由`多窗
 
 2. 若想觀看未在清單中的影片，也可點擊 Header 右方中的`增加影片`，輸入 Youtube 影片的 URL 。
 
-例：https://www.youtube.com/watch?v=5qap5aO4i9A。
+例：https://www.youtube.com/watch?v=5qap5aO4i9A
 
 ![add video button](/public/img/intro-addVideo-btn.png)
 
