@@ -6,7 +6,7 @@ function MultiViewHeader() {
   return (
     <>
       {/* stream list */}
-      <div className="flex items-center overflow-x-auto no-scrollbar h-full px-2">
+      <div className="flex items-center overflow-x-auto no-scrollbar h-full">
         <div className="flex items-center justify-start">
           <StreamList />
         </div>
