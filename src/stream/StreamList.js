@@ -67,7 +67,7 @@ function StreamList() {
         <p className="text-lg font-bold text-green-600 dark:text-green-300 mb-5">
           直播中
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 dark:text-gray-100">
           {renderLiveStreamItem()}
         </div>
       </div>
@@ -75,7 +75,7 @@ function StreamList() {
         <p className="text-lg font-bold text-green-600 dark:text-green-300 mb-5">
           預定直播
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 dark:text-gray-100">
           {renderScheduledStreamItem()}
         </div>
       </div>
