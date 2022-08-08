@@ -37,6 +37,14 @@ Holo Viewer 是一個讓使用者方便觀賞 Hololive 的網站，藉由`多窗
 
 ## Develop
 
+### install dependencies
+
+```
+yarn install
+```
+
+### run application with development mode
+
 ```
 npm run start
 ```
