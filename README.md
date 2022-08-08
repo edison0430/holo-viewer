@@ -46,5 +46,11 @@ yarn install
 ### run application with development mode
 
 ```
-npm run start
+yarn start
+```
+
+### update github page
+
+```
+yarn deploy
 ```
