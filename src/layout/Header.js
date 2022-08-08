@@ -8,7 +8,7 @@ import { MenuIcon } from '@heroicons/react/outline';
 import { useState } from 'react';
 import SideNav from './SideNav';
 import MultiViewHeader from './MultiViewHeader';
-import ThemeToggle from '../theme/ThemeToggle';
+import ThemeToggle from '../components/theme/ThemeToggle';
 
 function Navigation() {
   const [open, setOpen] = useState(false);
