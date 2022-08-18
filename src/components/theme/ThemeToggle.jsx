@@ -1,12 +1,12 @@
 import { SunIcon, MoonIcon } from '@heroicons/react/solid';
 
-import useDarkMode from '../../hooks/useDarkMode';
+import { useDarkMode } from '../../context/ThemeContext';
 
 const ThemeToggle = () => {
-  const [isDarkModeEnabled, toggleDarkMode] = useDarkMode();
+  const { toggleTheme, isDark } = useDarkMode();
 
   return (
-    <div onClick={toggleDarkMode} className="relative cursor-pointer">
+    <div onClick={toggleTheme} className="relative cursor-pointer">
       <div className="w-12 h-6 rounded-full bg-gray-900">
         <div className="absolute top-[2px] left-[2px]">
           <MoonIcon className="w-5 h-5 text-yellow-400" />
@@ -17,7 +17,7 @@ const ThemeToggle = () => {
       </div>
       <div
         className={`absolute top-[1px] w-[22px] h-[22px] ${
-          isDarkModeEnabled ? 'left-6' : 'left-[1px]'
+          isDark ? 'left-6' : 'left-[1px]'
         } bg-gray-100 rounded-full duration-200`}
       ></div>
     </div>

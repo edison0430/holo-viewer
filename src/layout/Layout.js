@@ -1,10 +1,13 @@
 import Header from './Header';
+import { ThemeProvider } from '../context/ThemeContext';
 
 function Layout(props) {
   return (
     <>
-      <Header />
-      <main>{props.children}</main>
+      <ThemeProvider>
+        <Header />
+        <main>{props.children}</main>
+      </ThemeProvider>
     </>
   );
 }
