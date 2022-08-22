@@ -1,9 +1,9 @@
 import { SunIcon, MoonIcon } from '@heroicons/react/solid';
 
-import { useDarkMode } from '../../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 const ThemeToggle = () => {
-  const { toggleTheme, isDark } = useDarkMode();
+  const { toggleTheme, isDark } = useTheme();
 
   return (
     <div onClick={toggleTheme} className="relative cursor-pointer">

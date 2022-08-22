@@ -46,7 +46,7 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export function useDarkMode() {
+export function useTheme() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const isDark = theme === 'dark';
 
