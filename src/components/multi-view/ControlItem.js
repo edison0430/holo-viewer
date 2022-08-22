@@ -17,8 +17,8 @@ import {
   removeStreamFromMultiView,
   showChat,
   hideChat,
-} from '../actions';
-import useMemberMapping from '../hooks/useMemberMapping';
+} from '@/actions';
+import useMemberMapping from '@/hooks/useMemberMapping';
 
 function ControlItem({
   id,

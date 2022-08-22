@@ -8,7 +8,7 @@ import {
   fetchScheduledStream,
   fetchChannel,
   fetchMember,
-} from '../actions/';
+} from '@/actions';
 
 function StreamList() {
   const dispatch = useDispatch();

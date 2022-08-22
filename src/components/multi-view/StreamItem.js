@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Tooltip from '../ui/Tooltip';
-import Notification from '../ui/Notification';
-import useMemberMapping from '../hooks/useMemberMapping';
-import { addStreamToMultiView, removeStreamFromMultiView } from '../actions/';
+import Tooltip from '@/components/ui/Tooltip';
+import Notification from '@/components/ui/Notification';
+import useMemberMapping from '@/hooks/useMemberMapping';
+import { addStreamToMultiView, removeStreamFromMultiView } from '@/actions/';
 
 function StreamItem({ stream }) {
   const [isTooltipShown, setIsTooltipShown] = useState(false);

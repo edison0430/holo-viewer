@@ -5,7 +5,7 @@ import {
   fetchScheduledStream,
   fetchChannel,
   fetchMember,
-} from '../actions/';
+} from '@/actions/';
 import StreamItem from './StreamItem';
 
 function StreamList() {

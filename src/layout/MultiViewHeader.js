@@ -1,6 +1,6 @@
-import StreamList from '../multiView/StreamList';
-import MediaButton from '../multiView/control/MediaButton';
-import AddLinkButton from '../multiView/control/AddLinkButton';
+import StreamList from '@/components/multi-view/StreamList';
+import MediaButton from '@/components/multi-view/control/MediaButton';
+import AddLinkButton from '@/components/multi-view/control/AddLinkButton';
 
 function MultiViewHeader() {
   return (

@@ -1,8 +1,9 @@
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
+import Home from './routes/Home';
+import MultiView from './routes/MultiView';
 import Layout from './layout/Layout';
-import StreamList from './stream/StreamList';
-import MultiViewIndex from './multiView';
+// import MultiViewIndex from './multiView';
 import useTracking from './hooks/useTracking';
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path="/" exact component={StreamList}></Route>
-          <Route path="/multi-view" exact component={MultiViewIndex}></Route>
+          <Route path="/" exact component={Home}></Route>
+          <Route path="/multi-view" exact component={MultiView}></Route>
         </Switch>
       </Layout>
     </Router>

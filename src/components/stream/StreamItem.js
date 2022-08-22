@@ -2,7 +2,8 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/zh-tw';
 import StreamChip from './StreamChip';
-import useMemberMapping from '../hooks/useMemberMapping';
+import useMemberMapping from '@/hooks/useMemberMapping';
+
 dayjs.extend(relativeTime);
 dayjs.locale('zh-tw');
 

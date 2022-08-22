@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addStreamToMultiView } from '../actions/';
-import Modal from '../ui/Modal';
-import Notification from '../ui/Notification';
+import { addStreamToMultiView } from '@/actions/';
+import Modal from '@/components/ui/Modal';
+import Notification from '@/components/ui/Notification';
 
 function UrlModal({ isOpen, toggle }) {
   const [url, setUrl] = useState('');

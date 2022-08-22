@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
-import StreamIframeWrapper from './StreamIframeWrapper';
+
+import StreamIframeWrapper from '@/components/multi-view/StreamIframeWrapper';
 
 const gridStyle = {
   1: 'lg:grid-cols-1',
@@ -13,7 +14,7 @@ const gridStyle = {
   9: 'lg:grid-cols-3',
 };
 
-function MultiViewIndex() {
+function MultiView() {
   const multiViewList = useSelector((state) => state.multiViewReducer);
   const multiViewLength = multiViewList.length;
 
@@ -36,4 +37,4 @@ function MultiViewIndex() {
   );
 }
 
-export default MultiViewIndex;
+export default MultiView;
