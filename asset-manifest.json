@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/holo-viewer/static/css/main.dd5da4eb.css",
-    "main.js": "/holo-viewer/static/js/main.770210af.js",
+    "main.css": "/holo-viewer/static/css/main.c506685e.css",
+    "main.js": "/holo-viewer/static/js/main.8aa58e8d.js",
     "static/js/787.89ef0c32.chunk.js": "/holo-viewer/static/js/787.89ef0c32.chunk.js",
     "index.html": "/holo-viewer/index.html",
-    "main.dd5da4eb.css.map": "/holo-viewer/static/css/main.dd5da4eb.css.map",
-    "main.770210af.js.map": "/holo-viewer/static/js/main.770210af.js.map",
+    "main.c506685e.css.map": "/holo-viewer/static/css/main.c506685e.css.map",
+    "main.8aa58e8d.js.map": "/holo-viewer/static/js/main.8aa58e8d.js.map",
     "787.89ef0c32.chunk.js.map": "/holo-viewer/static/js/787.89ef0c32.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dd5da4eb.css",
-    "static/js/main.770210af.js"
+    "static/css/main.c506685e.css",
+    "static/js/main.8aa58e8d.js"
   ]
 }
