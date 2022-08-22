@@ -1,7 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-import usePreferredColor from '../hooks/usePreferredColor';
-
 const DEFAULT_THEME = 'dark';
 
 /**
@@ -10,10 +8,13 @@ const DEFAULT_THEME = 'dark';
  */
 function getInitalTheme() {
   const storedTheme = window.localStorage.getItem('theme');
+  const preferredColorScheme =
+    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
   if (['dark', 'light'].includes(storedTheme)) {
     return storedTheme;
-  } else if (usePreferredColor) {
-    return usePreferredColor;
+  } else if (preferredColorScheme) {
+    return preferredColorScheme.matches ? 'dark' : 'light';
   } else {
     return DEFAULT_THEME;
   }
