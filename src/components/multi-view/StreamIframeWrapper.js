@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import YoutubePlayer from 'youtube-player';
-import { playVideo, pauseVideo } from '@/actions';
+
+import { playVideo, pauseVideo } from '@/store/multi-view/multi-view.action';
 import Spin from '@/components/ui/Spin';
 
 const stateMapping = {

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
+
 import StreamItem from './StreamItem';
 import SkeletonItem from './SkeletonItem';
 import {
@@ -8,11 +9,12 @@ import {
   fetchScheduledStream,
   fetchChannel,
   fetchMember,
-} from '@/actions';
+} from '@/store/stream/stream.action';
+import { selectLiveStream } from '@/store/stream/stream.selector';
 
 function StreamList() {
   const dispatch = useDispatch();
-  const liveStream = useSelector((state) => state.streamReducer.liveStream);
+  const liveStream = useSelector(selectLiveStream);
   const scheduledStream = useSelector(
     (state) => state.streamReducer.scheduledStream
   );

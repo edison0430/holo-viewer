@@ -1,11 +1,4 @@
-import {
-  REQUEST_LIVE_STREAM,
-  RECEIVE_LIVE_STREAM,
-  REQUEST_SCHEDULED_STREAM,
-  RECEIVE_SCHEDULED_STREAM,
-  FETCH_CHANNEL,
-  FETCH_MEMBER,
-} from '../actions/types';
+import { STREAM_ACTION_TYPES } from './stream.types';
 
 const INITAL_STATE = {
   liveStream: {
@@ -20,21 +13,21 @@ const INITAL_STATE = {
   member: [],
 };
 
-const streamReducer = (state = INITAL_STATE, action) => {
+export const streamReducer = (state = INITAL_STATE, action) => {
   switch (action.type) {
-    case REQUEST_LIVE_STREAM:
+    case STREAM_ACTION_TYPES.REQUEST_LIVE_STREAM:
       return { ...state, liveStream: { ...state.liveStream, isLoading: true } };
-    case RECEIVE_LIVE_STREAM:
+    case STREAM_ACTION_TYPES.RECEIVE_LIVE_STREAM:
       return {
         ...state,
         liveStream: { items: action.payload, isLoading: false },
       };
-    case REQUEST_SCHEDULED_STREAM:
+    case STREAM_ACTION_TYPES.REQUEST_SCHEDULED_STREAM:
       return {
         ...state,
         scheduledStream: { ...state.scheduledStream, isLoading: true },
       };
-    case RECEIVE_SCHEDULED_STREAM:
+    case STREAM_ACTION_TYPES.RECEIVE_SCHEDULED_STREAM:
       return {
         ...state,
         scheduledStream: {
@@ -42,13 +35,11 @@ const streamReducer = (state = INITAL_STATE, action) => {
           isLoading: false,
         },
       };
-    case FETCH_CHANNEL:
+    case STREAM_ACTION_TYPES.FETCH_CHANNEL:
       return { ...state, channel: action.payload };
-    case FETCH_MEMBER:
+    case STREAM_ACTION_TYPES.FETCH_MEMBER:
       return { ...state, member: action.payload };
     default:
       return state;
   }
 };
-
-export default streamReducer;

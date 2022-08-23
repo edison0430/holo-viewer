@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   fetchLiveStream,
   fetchScheduledStream,
   fetchChannel,
   fetchMember,
-} from '@/actions/';
+} from '@/store/stream/stream.action';
 import StreamItem from './StreamItem';
 
 function StreamList() {

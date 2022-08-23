@@ -1,5 +1,6 @@
-import { AdjustmentsIcon } from '@heroicons/react/outline';
 import { useState, useRef } from 'react';
+import { AdjustmentsIcon } from '@heroicons/react/outline';
+
 import ControlModal from '../ControlModal';
 import Tooltip from '../../ui/Tooltip';
 

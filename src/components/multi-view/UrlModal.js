@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addStreamToMultiView } from '@/actions/';
+
+import { addStreamToMultiView } from '@/store/multi-view/multi-view.action';
 import Modal from '@/components/ui/Modal';
 import Notification from '@/components/ui/Notification';
 

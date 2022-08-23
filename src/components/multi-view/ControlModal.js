@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux';
+
 import Modal from '../ui/Modal';
 import ControlItem from './ControlItem';
+import { selectMultiView } from '@/store/multi-view/multi-view.selector';
 
 function ControlModal({ isOpen, toggle }) {
-  const multiViewList = useSelector((state) => state.multiViewReducer);
+  const multiViewList = useSelector(selectMultiView);
   const multiViewLength = multiViewList.length;
 
   const renderControlList = multiViewList.map(

@@ -9,6 +9,7 @@ import {
   UserCircleIcon,
 } from '@heroicons/react/outline';
 import { ChatAlt2Icon as HideChatIcon } from '@heroicons/react/solid';
+
 import {
   playVideo,
   pauseVideo,
@@ -17,7 +18,7 @@ import {
   removeStreamFromMultiView,
   showChat,
   hideChat,
-} from '@/actions';
+} from '@/store/multi-view/multi-view.action';
 import useMemberMapping from '@/hooks/useMemberMapping';
 
 function ControlItem({
