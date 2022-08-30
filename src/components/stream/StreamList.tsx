@@ -5,25 +5,24 @@ import dayjs from 'dayjs';
 import StreamItem from './StreamItem';
 import SkeletonItem from './SkeletonItem';
 import {
-  fetchLiveStream,
-  fetchScheduledStream,
-  fetchChannel,
-  fetchMember,
-} from '@/store/stream/stream.action';
-import { selectLiveStream } from '@/store/stream/stream.selector';
+  fetchLiveStreams,
+  fetchScheduledStreams,
+  fetchChannels,
+  fetchMembers,
+  selectLiveStream,
+  selectScheduledStream,
+} from '@/store/stream/streamSlice';
 
-function StreamList() {
+const StreamList = () => {
   const dispatch = useDispatch();
   const liveStream = useSelector(selectLiveStream);
-  const scheduledStream = useSelector(
-    (state) => state.streamReducer.scheduledStream
-  );
+  const scheduledStream = useSelector(selectScheduledStream);
 
   useEffect(() => {
-    dispatch(fetchLiveStream());
-    dispatch(fetchScheduledStream());
-    dispatch(fetchChannel());
-    dispatch(fetchMember());
+    dispatch(fetchLiveStreams());
+    dispatch(fetchScheduledStreams());
+    dispatch(fetchChannels());
+    dispatch(fetchMembers());
   }, [dispatch]);
 
   const renderLiveStreamItem = () => {
@@ -31,9 +30,9 @@ function StreamList() {
       return renderLoadingSkeleton();
     }
 
-    return liveStream.items.length === 0
+    return liveStream.streams.length === 0
       ? 'There is no live stream now'
-      : liveStream.items.map((stream) => {
+      : liveStream.streams.map((stream) => {
           return <StreamItem key={stream.id} stream={stream} />;
         });
   };
@@ -43,9 +42,9 @@ function StreamList() {
       return renderLoadingSkeleton();
     }
 
-    return scheduledStream.items.length === 0
+    return scheduledStream.streams.length === 0
       ? 'There is no scheduled stream now'
-      : scheduledStream.items
+      : scheduledStream.streams
           .filter((stream) => {
             // 只顯示預定將於 24 小時之內開始之直播
             return dayjs(stream.start_at).isBefore(dayjs().add(1, 'day'));
@@ -57,8 +56,8 @@ function StreamList() {
 
   const renderLoadingSkeleton = () => {
     return Array(5)
-      .fill()
-      .map((item, index) => {
+      .fill(null)
+      .map((_, index) => {
         return <SkeletonItem key={index} />;
       });
   };
@@ -83,6 +82,6 @@ function StreamList() {
       </div>
     </div>
   );
-}
+};
 
 export default StreamList;

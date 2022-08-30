@@ -7,13 +7,18 @@ const isMobile = (function () {
   );
 })();
 
-const Tooltip = ({ title, parentNode }) => {
-  const tooltipRef = useRef();
+type TooltipProps = {
+  title: string;
+  parentNode: HTMLElement;
+};
+
+const Tooltip = ({ title, parentNode }: TooltipProps) => {
+  const tooltipRef = useRef<HTMLDivElement>(null);
   const [placement, setPlacement] = useState('-translate-x-1/2');
-  const [coords, setCoords] = useState({});
+  const [coords, setCoords] = useState({ left: 0, top: 0 });
 
   useEffect(() => {
-    const rect = parentNode.current.getBoundingClientRect();
+    const rect = parentNode.getBoundingClientRect();
     setCoords({
       left: rect.x + rect.width / 2,
       top: rect.y + rect.height,
@@ -22,11 +27,13 @@ const Tooltip = ({ title, parentNode }) => {
 
   useEffect(() => {
     // 檢查 tooltip 長度，避免 tooltip 超出螢幕兩測
-    const rect = tooltipRef.current.getBoundingClientRect();
-    if (coords.left + rect.width / 2 > window.innerWidth) {
-      setPlacement('-translate-x-full');
-    } else if (coords.left - rect.width / 2 < 0) {
-      setPlacement('');
+    if (tooltipRef.current !== null) {
+      const rect = tooltipRef.current.getBoundingClientRect();
+      if (coords.left + rect.width / 2 > window.innerWidth) {
+        setPlacement('-translate-x-full');
+      } else if (coords.left - rect.width / 2 < 0) {
+        setPlacement('');
+      }
     }
   }, [coords.left]);
 
@@ -42,7 +49,7 @@ const Tooltip = ({ title, parentNode }) => {
         {title}
       </div>
     </>,
-    document.querySelector('#tooltip')
+    document.querySelector('#tooltip')!
   );
 };
 

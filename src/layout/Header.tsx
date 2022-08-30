@@ -7,11 +7,11 @@ import MultiViewHeader from './MultiViewHeader';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 
 function Navigation() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const toggle = () => {
-    setOpen((prevState) => !prevState);
+    setIsOpen((prevState) => !prevState);
   };
 
   const renderHeader = () => {
@@ -40,7 +40,7 @@ function Navigation() {
         </button>
         {renderHeader()}
       </header>
-      <SideNav open={open} toggle={toggle} />
+      <SideNav isOpen={isOpen} toggle={toggle} />
     </>
   );
 }

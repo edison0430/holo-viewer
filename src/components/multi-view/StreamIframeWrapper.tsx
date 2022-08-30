@@ -1,44 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import YoutubePlayer from 'youtube-player';
+import YouTube, { YouTubeProps, YouTubePlayer } from 'react-youtube';
 
-import { playVideo, pauseVideo } from '@/store/multi-view/multi-view.action';
+import { playStream, pauseStream } from '@/store/multiView/multiViewSlice';
 import Spin from '@/components/ui/Spin';
+import { MultiView } from '@/store/multiView/multiView.types';
 
-const stateMapping = {
-  playing: 1,
-  paused: 2,
+type StreamIframeWrapperProps = {
+  stream: MultiView;
 };
 
-function StreamIframeWrapper({ stream }) {
+const StreamIframeWrapper = ({ stream }: StreamIframeWrapperProps) => {
   const dispatch = useDispatch();
   const { id, room, isPlaying, isMuted, isChatShown } = stream;
-  const [player, setPlayer] = useState(null);
+  const [player, setPlayer] = useState<YouTubePlayer>();
   const [isReady, setIsReady] = useState(false);
-
-  useEffect(() => {
-    let player = YoutubePlayer(`player-${id}`, {
-      width: '100%',
-      height: '100%',
-      videoId: room,
-      playerVars: {
-        playsinline: 1,
-      },
-    });
-    setPlayer(player);
-
-    const listener = player.on('stateChange', (event) => {
-      if (event.data === stateMapping['playing']) {
-        dispatch(playVideo(id));
-      } else if (event.data === stateMapping['paused']) {
-        dispatch(pauseVideo(id));
-      }
-    });
-
-    player.on('ready', () => setIsReady(true));
-
-    return () => player.off(listener);
-  }, [id, room, dispatch]);
 
   useEffect(() => {
     if (!player) return;
@@ -71,17 +47,42 @@ function StreamIframeWrapper({ stream }) {
     );
   };
 
+  const onPlayerReady: YouTubeProps['onReady'] = (event) => {
+    setPlayer(event.target);
+    setIsReady(true);
+  };
+
+  const onPlayerPlay: YouTubeProps['onPlay'] = () => {
+    dispatch(playStream(id));
+  };
+
+  const onPlayerPause: YouTubeProps['onPause'] = () => {
+    dispatch(pauseStream(id));
+  };
+
+  const opts: YouTubeProps['opts'] = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 0,
+    },
+  };
+
   return (
     <div className="flex flex-col lg:flex-row bg-black">
       {/* video */}
       <div className="relative pt-[56.25%] lg:pt-0 lg:flex-1">
         {!isReady && renderLoading()}
-        <div
+        <YouTube
           className="absolute top-0 left-0 w-full h-full"
-          id={`player-${stream.id}`}
-        ></div>
+          videoId={room}
+          opts={opts}
+          onReady={onPlayerReady}
+          onPlay={onPlayerPlay}
+          onPause={onPlayerPause}
+        />
       </div>
-
       {/* chat */}
       <div
         className={`w-full lg:w-[300px] h-[400px] lg:h-full ${
@@ -98,6 +99,6 @@ function StreamIframeWrapper({ stream }) {
       </div>
     </div>
   );
-}
+};
 
 export default StreamIframeWrapper;

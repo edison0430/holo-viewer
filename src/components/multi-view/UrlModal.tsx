@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addStreamToMultiView } from '@/store/multi-view/multi-view.action';
+// import { addStreamToMultiView } from '@/store/multi-view/multi-view.action';
 import Modal from '@/components/ui/Modal';
 import Notification from '@/components/ui/Notification';
+import { selectMultiView, addStream } from '@/store/multiView/multiViewSlice';
 
-function UrlModal({ isOpen, toggle }) {
+type UrlModalProps = {
+  isOpen: boolean;
+  toggle: () => void;
+};
+
+const UrlModal = ({ isOpen, toggle }: UrlModalProps) => {
   const [url, setUrl] = useState('');
   const [isNotificationShown, setIsNotificationShwon] = useState(false);
   const [notification, setNotificaton] = useState({ title: '', content: '' });
   const dispatch = useDispatch();
-  const multiViewList = useSelector((state) => state.multiViewReducer);
+  const multiViewList = useSelector(selectMultiView);
 
   useEffect(() => {
     if (!isOpen) setUrl('');
@@ -43,7 +49,7 @@ function UrlModal({ isOpen, toggle }) {
       title: matched[1],
       room: matched[1],
     };
-    dispatch(addStreamToMultiView(stream));
+    dispatch(addStream(stream));
   };
 
   return (
@@ -71,6 +77,6 @@ function UrlModal({ isOpen, toggle }) {
       )}
     </>
   );
-}
+};
 
 export default UrlModal;

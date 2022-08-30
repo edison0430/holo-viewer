@@ -4,30 +4,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import Tooltip from '@/components/ui/Tooltip';
 import Notification from '@/components/ui/Notification';
 import useMemberMapping from '@/hooks/useMemberMapping';
-import {
-  addStreamToMultiView,
-  removeStreamFromMultiView,
-} from '@/store/multi-view/multi-view.action';
+import { selectMultiView } from '@/store/multiView/multiViewSlice';
+import { addStream, removeStream } from '@/store/multiView/multiViewSlice';
+import { Stream as TStream } from '@/store/stream/stream.types';
 
-function StreamItem({ stream }) {
+type StreamItemProps = {
+  stream: TStream;
+};
+
+const StreamItem = ({ stream }: StreamItemProps) => {
   const [isTooltipShown, setIsTooltipShown] = useState(false);
   const [isNotificationShown, setIsNotificationShwon] = useState(false);
   const [notification, setNotificaton] = useState({ title: '', content: '' });
-  const btnRef = useRef();
+  const btnRef = useRef<HTMLButtonElement>(null);
   const dispatch = useDispatch();
-  const multiViewList = useSelector((state) => state.multiViewReducer);
+  const multiViewList = useSelector(selectMultiView);
   const member = useMemberMapping(stream.channel_id);
 
-  const toggleStream = (stream) => {
+  const toggleStream = (stream: TStream) => {
     if (multiViewList.some((item) => item.id === stream.id)) {
-      dispatch(removeStreamFromMultiView(stream.id));
+      dispatch(removeStream(stream.id));
     } else {
       if (multiViewList.length >= 9) {
         setNotificaton({ title: '操作失敗', content: '已達列表上限' });
         setIsNotificationShwon(true);
         return;
       }
-      dispatch(addStreamToMultiView(stream));
+      dispatch(addStream(stream));
     }
   };
 
@@ -56,7 +59,7 @@ function StreamItem({ stream }) {
       {isTooltipShown && (
         <Tooltip
           title={`${member?.name} - ${stream.title}`}
-          parentNode={btnRef}
+          parentNode={btnRef.current!}
         />
       )}
       {isNotificationShown && (
@@ -68,6 +71,6 @@ function StreamItem({ stream }) {
       )}
     </>
   );
-}
+};
 
 export default StreamItem;

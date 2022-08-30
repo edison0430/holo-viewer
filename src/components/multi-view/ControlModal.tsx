@@ -2,9 +2,14 @@ import { useSelector } from 'react-redux';
 
 import Modal from '../ui/Modal';
 import ControlItem from './ControlItem';
-import { selectMultiView } from '@/store/multi-view/multi-view.selector';
+import { selectMultiView } from '@/store/multiView/multiViewSlice';
 
-function ControlModal({ isOpen, toggle }) {
+type ControlModalProps = {
+  isOpen: boolean;
+  toggle: () => void;
+};
+
+const ControlModal = ({ isOpen, toggle }: ControlModalProps) => {
   const multiViewList = useSelector(selectMultiView);
   const multiViewLength = multiViewList.length;
 
@@ -13,7 +18,7 @@ function ControlModal({ isOpen, toggle }) {
       return (
         <ControlItem
           id={id}
-          channelId={channel_id}
+          channel_id={channel_id}
           title={title}
           isPlaying={isPlaying}
           isMuted={isMuted}
@@ -29,6 +34,6 @@ function ControlModal({ isOpen, toggle }) {
       {multiViewLength ? renderControlList : '目前沒有選取到影片'}
     </Modal>
   );
-}
+};
 
 export default ControlModal;

@@ -4,11 +4,16 @@ import 'dayjs/locale/zh-tw';
 
 import StreamChip from './StreamChip';
 import useMemberMapping from '@/hooks/useMemberMapping';
+import { Stream as TStream } from '@/store/stream/stream.types';
 
 dayjs.extend(relativeTime);
 dayjs.locale('zh-tw');
 
-function StreamItem({ stream }) {
+type StreamProps = {
+  stream: TStream;
+};
+
+const StreamItem = ({ stream }: StreamProps) => {
   const member = useMemberMapping(stream.channel_id);
 
   const renderTimeFromNow = () => {
@@ -47,7 +52,10 @@ function StreamItem({ stream }) {
           </div>
           {/* text */}
           <div className="flex-1 min-w-0">
-            <p className="text-lg text-left tracking-wide text-i truncate">
+            <p
+              className="text-lg text-left tracking-wide text-i truncate"
+              title={stream.title}
+            >
               {stream.title}
             </p>
             <p className="pt-1">{member?.name}</p>
@@ -57,6 +65,6 @@ function StreamItem({ stream }) {
       </div>
     </a>
   );
-}
+};
 
 export default StreamItem;

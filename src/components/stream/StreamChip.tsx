@@ -1,18 +1,25 @@
+import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import duration from 'dayjs/plugin/duration';
-import { useEffect, useState } from 'react';
+
+import { Stream as TStream } from '@/store/stream/stream.types';
+
 dayjs.extend(relativeTime);
 dayjs.extend(duration);
 
-function getDuration(startAt) {
+type StreamChipProps = {
+  stream: TStream;
+};
+
+function getDuration(startAt: string | undefined): string {
   const now = dayjs();
   const duration = dayjs.duration(now.diff(dayjs(startAt)));
 
   return duration.format('HH:mm:ss');
 }
 
-function StreamChip({ stream }) {
+const StreamChip = ({ stream }: StreamChipProps) => {
   const { start_at: startAt } = stream;
   const [duration, setDuration] = useState(() => getDuration(startAt));
 
@@ -31,6 +38,6 @@ function StreamChip({ stream }) {
       {duration}
     </span>
   );
-}
+};
 
 export default StreamChip;

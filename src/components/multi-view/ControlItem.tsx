@@ -11,26 +11,27 @@ import {
 import { ChatAlt2Icon as HideChatIcon } from '@heroicons/react/solid';
 
 import {
-  playVideo,
-  pauseVideo,
+  playStream,
+  pauseStream,
   mute,
   unMute,
-  removeStreamFromMultiView,
   showChat,
   hideChat,
-} from '@/store/multi-view/multi-view.action';
+  removeStream,
+} from '@/store/multiView/multiViewSlice';
 import useMemberMapping from '@/hooks/useMemberMapping';
+import { MultiView } from '@/store/multiView/multiView.types';
 
-function ControlItem({
+const ControlItem = ({
   id,
-  channelId,
+  channel_id,
   title,
   isPlaying,
   isMuted,
   isChatShown,
-}) {
+}: MultiView) => {
   const dispatch = useDispatch();
-  const member = useMemberMapping(channelId);
+  const member = useMemberMapping(channel_id);
 
   const renderAvatar = () => {
     if (member?.avatar) {
@@ -55,7 +56,7 @@ function ControlItem({
           <button
             className="w-8 h-8 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200"
             onClick={() =>
-              isPlaying ? dispatch(pauseVideo(id)) : dispatch(playVideo(id))
+              isPlaying ? dispatch(pauseStream(id)) : dispatch(playStream(id))
             }
           >
             {isPlaying ? <PauseIcon /> : <PlayIcon />}
@@ -78,7 +79,7 @@ function ControlItem({
           </button>
           <button
             className="w-8 h-8 text-gray-500 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-200"
-            onClick={() => dispatch(removeStreamFromMultiView(id))}
+            onClick={() => dispatch(removeStream(id))}
           >
             <TrashIcon />
           </button>
@@ -86,6 +87,6 @@ function ControlItem({
       </div>
     </div>
   );
-}
+};
 
 export default ControlItem;

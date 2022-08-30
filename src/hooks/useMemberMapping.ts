@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
 
-function useMemberMapping(channelId) {
-  const channels = useSelector((state) => state.streamReducer.channel);
-  const members = useSelector((state) => state.streamReducer.member);
+import { selectChannels, selectMembers } from '@/store/stream/streamSlice';
+
+function useMemberMapping(channelId: number | undefined) {
+  const channels = useSelector(selectChannels);
+  const members = useSelector(selectMembers);
 
   const memberId = channels.find(
     (channel) => channel.id === channelId

@@ -1,15 +1,23 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
-const Modal = ({ isOpen, toggle, children, title, onOk }) => {
-  const ref = useRef();
+type ModalProps = {
+  isOpen: boolean;
+  toggle: () => void;
+  children: React.ReactNode;
+  title: string;
+  onOk?: () => void;
+};
+
+const Modal = ({ isOpen, toggle, children, title, onOk }: ModalProps) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (!ref.current?.contains(event.target)) {
-        if (!isOpen) return;
-
-        toggle(false);
+    const handleOutsideClick = (event: Event) => {
+      if (!ref.current?.contains(event.target as Document)) {
+        if (isOpen) {
+          toggle();
+        }
       }
     };
     window.addEventListener('click', handleOutsideClick, true);
@@ -28,7 +36,7 @@ const Modal = ({ isOpen, toggle, children, title, onOk }) => {
           className="px-2 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-sm"
           onClick={() => {
             onOk();
-            toggle(false);
+            toggle();
           }}
         >
           確定
@@ -58,7 +66,7 @@ const Modal = ({ isOpen, toggle, children, title, onOk }) => {
         </div>
       </div>
     </>,
-    document.querySelector('#modal')
+    document.querySelector('#modal')!
   );
 };
 

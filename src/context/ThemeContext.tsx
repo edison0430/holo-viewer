@@ -1,18 +1,21 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
+type Valid_Theme = 'dark' | 'light';
+
+type ThemeContextType = {
+  theme: Valid_Theme;
+  toggleTheme: () => void;
+};
+
 const DEFAULT_THEME = 'dark';
 
-/**
- * @returns {string} 'light' or 'dark'
- * @description priority: 1. local storage 2. system preferred color 3. default theme
- */
 function getInitalTheme() {
-  const storedTheme = window.localStorage.getItem('theme');
+  const storedTheme = window.localStorage.getItem('theme') || '';
   const preferredColorScheme =
     window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
 
   if (['dark', 'light'].includes(storedTheme)) {
-    return storedTheme;
+    return storedTheme as Valid_Theme;
   } else if (preferredColorScheme) {
     return preferredColorScheme.matches ? 'dark' : 'light';
   } else {
@@ -20,9 +23,16 @@ function getInitalTheme() {
   }
 }
 
-export const ThemeContext = createContext(getInitalTheme());
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: DEFAULT_THEME,
+  toggleTheme: () => {},
+});
 
-export function ThemeProvider({ children }) {
+type ThemeProviderPrsop = {
+  children: React.ReactNode;
+};
+
+export function ThemeProvider({ children }: ThemeProviderPrsop) {
   const [theme, setTheme] = useState(getInitalTheme());
   const nextTheme = theme === 'dark' ? 'light' : 'dark';
 

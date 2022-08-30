@@ -1,29 +1,35 @@
 import { NavLink } from 'react-router-dom';
 import { MenuIcon, HomeIcon, ViewGridIcon } from '@heroicons/react/outline';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRef } from 'react';
 
-function SideNav({ open, toggle }) {
-  const ref = useRef(null);
+type SideNavProps = {
+  isOpen: boolean;
+  toggle: () => void;
+};
+
+const SideNav = ({ isOpen, toggle }: SideNavProps) => {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (!ref.current.contains(event.target)) {
-        if (!open) return;
-        toggle();
+    const handleOutsideClick = (event: Event) => {
+      if (!ref.current?.contains(event.target as Document)) {
+        if (isOpen) {
+          toggle();
+        }
       }
     };
 
-    window.addEventListener('click', handleOutsideClick, true);
+    window.addEventListener('click', handleOutsideClick);
 
-    return () => window.removeEventListener('click', handleOutsideClick, true);
-  }, [open, toggle]);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [isOpen, toggle]);
 
   return (
     <aside
       ref={ref}
       className={`fixed top-0 left-0 h-screen w-56 ${
-        !open && '-translate-x-full'
+        !isOpen && '-translate-x-full'
       } bg-white dark:bg-gray-700 dark:text-gray-100 z-10 transform duration-200`}
     >
       <div className="h-14 pl-4 mb-2 flex items-center space-x-4">
@@ -56,6 +62,6 @@ function SideNav({ open, toggle }) {
       </nav>
     </aside>
   );
-}
+};
 
 export default SideNav;

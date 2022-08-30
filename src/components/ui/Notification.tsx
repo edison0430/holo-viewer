@@ -3,7 +3,19 @@ import { useEffect } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import PropTypes from 'prop-types';
 
-const Notification = ({ title, content, duration = 3000, onClose }) => {
+type NotificationProps = {
+  title: string;
+  content: string;
+  duration?: number;
+  onClose: () => void;
+};
+
+const Notification = ({
+  title,
+  content,
+  duration = 3000,
+  onClose,
+}: NotificationProps) => {
   useEffect(() => {
     const timer = setTimeout(() => onClose(), duration);
 
@@ -25,7 +37,7 @@ const Notification = ({ title, content, duration = 3000, onClose }) => {
         </div>
       </div>
     </>,
-    document.getElementById('notification')
+    document.getElementById('notification')!
   );
 };
 

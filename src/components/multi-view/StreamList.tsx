@@ -2,26 +2,27 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  fetchLiveStream,
-  fetchScheduledStream,
-  fetchChannel,
-  fetchMember,
-} from '@/store/stream/stream.action';
+  fetchLiveStreams,
+  fetchScheduledStreams,
+  fetchChannels,
+  fetchMembers,
+} from '@/store/stream/streamSlice';
 import StreamItem from './StreamItem';
+import { selectLiveStream } from '@/store/stream/streamSlice';
 
 function StreamList() {
   const dispatch = useDispatch();
-  const liveStream = useSelector((state) => state.streamReducer.liveStream);
+  const liveStream = useSelector(selectLiveStream);
 
   useEffect(() => {
-    dispatch(fetchLiveStream());
-    dispatch(fetchScheduledStream());
-    dispatch(fetchChannel());
-    dispatch(fetchMember());
+    dispatch(fetchLiveStreams());
+    dispatch(fetchScheduledStreams());
+    dispatch(fetchChannels());
+    dispatch(fetchMembers());
   }, [dispatch]);
 
   const renderLiveStream = () =>
-    liveStream.items.map((stream) => {
+    liveStream.streams.map((stream) => {
       return <StreamItem stream={stream} key={stream.id} />;
     });
 
