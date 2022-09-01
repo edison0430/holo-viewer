@@ -2,8 +2,6 @@ import holoDev from '@/apis/holoDev';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Stream, Channel, Member } from './stream.types';
-import res from '@/response';
-import scheduledRes from '@/scheduledRes';
 import { RootState } from '../store';
 
 export type StreamState = {
@@ -23,7 +21,6 @@ export const fetchLiveStreams = createAsyncThunk(
   'stream/fetchLiveStreams',
   async () => {
     const response = await holoDev.get<{ lives: Stream[] }>('/lives/current');
-    // const response = res;
 
     const liveStreams = response.data.lives.map((live) => {
       return {
@@ -40,7 +37,6 @@ export const fetchScheduledStreams = createAsyncThunk(
   'stream/fetchScheduledStreams',
   async () => {
     const response = await holoDev.get<{ lives: Stream[] }>('/lives/scheduled');
-    // const response = scheduledRes;
 
     const scheduledStreams = response.data.lives.map((live) => {
       return {
