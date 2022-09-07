@@ -1,6 +1,11 @@
-import holoDev from '@/apis/holoDev';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import {
+  apiFetchLiveStream,
+  apiFetchScheduledStream,
+  apiFetchChannels,
+  apiFetchMembers,
+} from '@/apis/holoDev';
 import { Stream, Channel, Member } from './stream.types';
 import { RootState } from '../store';
 
@@ -20,7 +25,7 @@ export type StreamState = {
 export const fetchLiveStreams = createAsyncThunk(
   'stream/fetchLiveStreams',
   async () => {
-    const response = await holoDev.get<{ lives: Stream[] }>('/lives/current');
+    const response = await apiFetchLiveStream();
 
     const liveStreams = response.data.lives.map((live) => {
       return {
@@ -36,7 +41,7 @@ export const fetchLiveStreams = createAsyncThunk(
 export const fetchScheduledStreams = createAsyncThunk(
   'stream/fetchScheduledStreams',
   async () => {
-    const response = await holoDev.get<{ lives: Stream[] }>('/lives/scheduled');
+    const response = await apiFetchScheduledStream();
 
     const scheduledStreams = response.data.lives.map((live) => {
       return {
@@ -60,7 +65,7 @@ export const fetchChannels = createAsyncThunk(
       let page = 1;
       let hasNextPage = true;
       while (hasNextPage) {
-        const response = await holoDev.get(`channels?limit=100&page=${page}`);
+        const response = await apiFetchChannels(page);
         channels = channels.concat(response.data.channels);
 
         if (channels.length < response.data.total) {
@@ -85,7 +90,7 @@ export const fetchMembers = createAsyncThunk(
     );
 
     if (members.length === 0) {
-      const response = await holoDev.get('/members');
+      const response = await apiFetchMembers();
       members = response.data;
       sessionStorage.setItem('members', JSON.stringify(members));
     }
