@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 const useTracking = () => {
   useEffect(() => {
     const history = createHashHistory();
-    ReactGA.initialize('UA-154394704-1');
+    ReactGA.initialize('G-GXRJTSMZXY', { debug: false });
 
     let unlisten = history.listen((location) => {
       ReactGA.pageview(location.pathname);

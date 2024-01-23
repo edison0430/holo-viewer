@@ -39,7 +39,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7"
   },
   "scripts": {
-    "start": "TAILWIND_MODE=watch craco start MOCK=true",
+    "start": "TAILWIND_MODE=watch craco start",
     "build": "craco build",
     "test": "craco test",
     "commit": "git-cz",
