@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { AdjustmentsIcon } from '@heroicons/react/outline';
+import ReactGA from 'react-ga4';
 
 import ControlModal from '../ControlModal';
 import Tooltip from '../../ui/Tooltip';
@@ -13,11 +14,20 @@ const MediaButton = () => {
     setIsOpen(!isOpen);
   };
 
+  const openModal = () => {
+    setIsOpen(true)
+
+    ReactGA.event({
+      category: 'app',
+      action: 'open_control_modal',
+    });
+  }
+
   return (
     <>
       <button
         className="w-10 h-10"
-        onClick={() => setIsOpen((prevStatus) => !prevStatus)}
+        onClick={() => openModal()}
         onMouseEnter={() => {
           setIsTooltipShown(true);
         }}

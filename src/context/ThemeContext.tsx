@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 type Valid_Theme = 'dark' | 'light';
 
@@ -49,8 +49,9 @@ export function ThemeProvider({ children }: ThemeProviderPrsop) {
     setTheme(nextTheme);
     window.localStorage.setItem('theme', nextTheme);
     ReactGA.event({
-      category: 'toggle-dark-mode',
-      action: nextTheme
+      category: 'app',
+      action: 'toggle_dark_mode',
+      label: nextTheme
     });
   };
 

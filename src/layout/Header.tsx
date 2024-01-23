@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { MenuIcon } from '@heroicons/react/outline';
 import { useState } from 'react';
+import ReactGA from 'react-ga4'
 
 import SideNav from './SideNav';
 import MultiViewHeader from './MultiViewHeader';
@@ -12,6 +13,12 @@ function Navigation() {
 
   const toggle = () => {
     setIsOpen((prevState) => !prevState);
+
+    ReactGA.event({
+      category: 'app',
+      action: 'open_navigation',
+      label: String(isOpen)
+    });
   };
 
   const renderHeader = () => {

@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { ViewGridAddIcon } from '@heroicons/react/outline';
+import ReactGA from 'react-ga4'
 
 import Tooltip from '../../ui/Tooltip';
 import UrlModal from '../UrlModal';
@@ -13,11 +14,20 @@ const AddLinkButton = () => {
     setIsOpen(!isOpen);
   };
 
+  const openModal = () => {
+    setIsOpen(true)
+
+    ReactGA.event({
+      category: 'app',
+      action: 'open_url_modal',
+    });
+  }
+
   return (
     <>
       <button
         className="h-10 w-10 text-green-300 hover:text-green-400"
-        onClick={() => setIsOpen((prevStatus) => !prevStatus)}
+        onClick={() => openModal()}
         onMouseEnter={() => {
           setIsTooltipShown(true);
         }}
